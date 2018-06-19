@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns="http://www.zlframework.com/zlrpc"
+            xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:beans="http://www.springframework.org/schema/beans"
+            targetNamespace="http://www.zlframework.com/zlrpc"
+            elementFormDefault="qualified"
+            attributeFormDefault="unqualified">
+    <xsd:import namespace="http://www.springframework.org/schema/beans"/>
+
+    <!--服务提供者-->
+    <xsd:element name="service">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="beans:identifiedType">
+                    <xsd:attribute name="interface" type="xsd:string" use="required"/>
+                    <xsd:attribute name="ref" type="xsd:string" use="required"/>
+                    <xsd:attribute name="serialize" type="xsd:string" use="optional"/>
+                    <xsd:attribute name="port" type="xsd:int" use="required"/>
+                    <xsd:attribute name="timeout" type="xsd:int" use="optional"/>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--注册中心-->
+    <xsd:element name="registry">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="beans:identifiedType">
+                    <xsd:attribute name="protocol" type="xsd:string" use="optional"/> <!-- 默认zookeeper -->
+                    <xsd:attribute name="address" type="xsd:string" use="required"/>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--服务消费者-->
+    <xsd:element name="reference">
+        <xsd:complexType>
+            <xsd:complexContent>
+                <xsd:extension base="beans:identifiedType">
+                    <xsd:attribute name="interface" type="xsd:string" use="required"/>
+                    <xsd:attribute name="serialize" type="xsd:string" use="optional"/>
+                    <xsd:attribute name="timeout" type="xsd:int" use="optional"/>
+                    <xsd:attribute name="loadbalance" type="xsd:string" use="optional"/>
+                </xsd:extension>
+            </xsd:complexContent>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

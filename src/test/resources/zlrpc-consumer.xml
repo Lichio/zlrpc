@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:zlrpc="http://www.zlframework.com/zlrpc"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.zlframework.com/zlrpc http://www.zlframework.com/zlrpc/zlrpc.xsd">
+
+    <zlrpc:reference id="addService"
+                     interface="com.zlframework.rpc.services.IAddTest"
+                     serialize="jdknative"
+                     timeout="3000"
+    />
+
+    <zlrpc:registry id="mainRegistry" address="127.0.0.1:2181" />
+
+
+</beans>
